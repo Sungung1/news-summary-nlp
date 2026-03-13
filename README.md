@@ -16,30 +16,14 @@ News Summary NLP is a Korean news summarization project that compares multiple a
 
 ## Architecture
 
-News URL -> Article crawling -> Text preprocessing -> Multiple summarizers -> Comparative summary output
-
-## Project Structure
-
-```text
-news-summary-nlp/
-├── src/news_summary_nlp/
-├── data/
-├── models/
-├── notebooks/
-├── myproject/templates/
-├── train.py
-├── inference.py
-├── app.py
-├── requirements.txt
-└── README.md
-```
+Input article URL -> Crawling and preprocessing -> Summarization models -> Summary output
 
 ## Usage
 
 ```bash
 pip install -r requirements.txt
-python train.py --help
-python inference.py --help
+python train.py
+python inference.py
 python app.py
 ```
 
@@ -50,9 +34,3 @@ Reported metrics from the original project:
 - ROUGE-1: `0.041`
 - ROUGE-2: `0.017`
 - ROUGE-L: `0.041`
-
-## Demo
-
-- Flask web app with article URL input
-- Comparison across BERT, KoBART, and custom Seq2Seq summaries
-- Project report: `4조_miniporject_NLP_News_Summary.pdf`
