@@ -1,3 +1,5 @@
+from pathlib import Path
+
 import keras, torch, urllib.request, requests, re, os, json, random, numpy as np, pandas as pd
 from flask import Flask, request, render_template, jsonify
 from summarizer import Summarizer, TransformerSummarizer
@@ -12,8 +14,11 @@ from tensorflow.keras.models import Model
 from io import StringIO
 from torch.utils.data import DataLoader, Dataset
 
-encoder_model = keras.models.load_model("enc_mode2")
-decoder_model = keras.models.load_model("dec_model2")
+PROJECT_ROOT = Path(__file__).resolve().parents[2]
+MODEL_ROOT = PROJECT_ROOT / "myproject"
+
+encoder_model = keras.models.load_model(str(MODEL_ROOT / "enc_mode2"))
+decoder_model = keras.models.load_model(str(MODEL_ROOT / "dec_model2"))
 text_max_len = 350
 summary_max_len = 30
 stopwords = ['의', '가', '이', '은', '들', '는', '좀', '잘', '걍', '과', '도', '를', '으로', '자', '에', '와', '한', '하다', '을', '이다', '다']
@@ -25,7 +30,7 @@ def news_preprocessing(sentence):
     result = ' '.join(stopwords_removed_sentence)
     return result
 
-app = Flask(__name__)
+app = Flask(__name__, template_folder=str(MODEL_ROOT / "templates"))
 app.debug = True
 
 # Main page
