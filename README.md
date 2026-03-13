@@ -24,7 +24,6 @@ Input article URL -> Crawling and preprocessing -> Summarization models -> Summa
 pip install -r requirements.txt
 python train.py
 python inference.py
-python app.py
 ```
 
 ## Results
